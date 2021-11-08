@@ -1,14 +1,14 @@
 import React, {useState,useRef,useEffect,Fragment} from 'react'
 import {Link} from 'react-router-dom'
 
-const Landing=() => {
+const Landing =() => {
 
     const [btn, setBtn] = useState(false);
 
     //on récupère la classe welcomePage avec useRef
     const refWolverine= useRef(null);
 
-    //Une fois le composant monté et on va accéder au current et ajouter une 
+    //Une fois le composant monté, on va accéder au current et ajouter une 
     //nouvelle classe
     useEffect(() => {
         refWolverine.current.classList.add("startingImg");
@@ -55,4 +55,4 @@ const Landing=() => {
     )
 }
 
-export default Landing;
+export default Landing
