@@ -1,7 +1,8 @@
 import React, {useState,useContext} from 'react'
 import {FirebaseContext} from '../Firebase'
+import {Link} from 'react-router-dom'
 
-const Signup =() =>{
+const Signup =(props) =>{
 
     const firebase= useContext(FirebaseContext);
 
@@ -24,6 +25,7 @@ const Signup =() =>{
         firebase.signupUser(email,password)
         .then(user =>{
             setLoginData({...data});//vide la variable d'état
+            props.history.push('/welcome')
         })
         .catch(error =>{
             setError(error);
@@ -33,7 +35,7 @@ const Signup =() =>{
 
     const {pseudo,email,password,confirmPassword} = loginData;
 
-    const btn= pseudo ===''|| email ==='' || password ==='' || password !== confirmPassword
+    const btn = pseudo ===''|| email ==='' || password ==='' || password !== confirmPassword
     ? <button disabled>Inscription</button> : <button>Inscription</button>
 
     //gestion erreurs
@@ -66,6 +68,11 @@ const Signup =() =>{
                                 <label htmlFor="confirmPassword">Confirmer le mot de passe</label>
                             </div>
                             {btn}
+                            <div className="linkContainer">
+                                <Link className="simpleLink" to="/login">
+                                    Déjà inscrit ? Connectez-vous.
+                                </Link>
+                            </div>
                         </form>
                     </div>
                 </div>
