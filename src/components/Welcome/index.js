@@ -15,22 +15,24 @@ const Welcome =(props) =>{
             user ? setUserSession(user) : props.history.push('/');
        }) 
 
-       firebase.user(userSession.uid)
-       .get()
-       .then( doc => {
-           if(doc && doc.exists){
-              const myData =doc.data();
-              setUserData(myData)
-           }
-       })
-       .catch(error =>{
-            console.log(error);
-       })
-
+       if(!!userSession) {
+        firebase.user(userSession.uid)
+        .get()
+        .then( doc => {
+            if(doc && doc.exists){
+               const myData =doc.data();
+               setUserData(myData)
+            }
+        })
+        .catch(error =>{
+             console.log(error);
+        })
+       }
+       
        return () =>{
         listener()
        };
-    },[])
+    },[userSession])
 
     return userSession === null ? (
         <Fragment>
