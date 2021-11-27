@@ -152,8 +152,11 @@ class Quizz extends Component {
             )
         })
         
-        return this.state.endQuiz ? (
-            <QuizOver />
+        return !this.state.quizEnd ? (
+            <QuizOver
+                ref={this.storedDataRef} 
+
+            />
         )
         :
         (
