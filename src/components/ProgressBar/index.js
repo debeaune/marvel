@@ -13,7 +13,7 @@ const ProgressBar = ({idQuestion,maxQuestions}) => {
     return (
         <Fragment>
             <div className="percentage">
-                <div className="progressPercent">{`Question: ${idQuestion}/${maxQuestions}`}</div>
+                <div className="progressPercent">{`Question: ${idQuestion + 1}/${maxQuestions}`}</div>
                 <div className="progressPercent">{`Progression:${progressPercent}%`}</div>
             </div>
             <div className="progressBar">

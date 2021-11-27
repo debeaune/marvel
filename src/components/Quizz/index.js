@@ -20,7 +20,9 @@ class Quizz extends Component {
         btnDisabled:true,
         userAnswer:null,
         score:0,
+        showWelcomeMsg:false,
         quizEnd:false,
+        percent:null
     }
 
     storedDataRef=React.createRef();
@@ -131,15 +133,27 @@ class Quizz extends Component {
         }
     }
 
-    gameOver = () =>{
-        this.setState({
-            quizEnd:true
-        })
+    getPercentage = (maxQuest,ourScore) => (ourScore/maxQuest)*100;
+
+    gameOver = () => {
+
+        const gradepercent = this.getPercentage(this.state.maxQuestions,this.state.score);
+
+        if(gradepercent >=50){
+            this.setState({
+                quizLevel:this.state.quizLevel+1,
+                percent:gradepercent,
+                quizEnd:true
+            })
+        }else{
+            this.setState({
+                percent:gradepercent,
+                quizEnd:true
+            })
+        }
     }
 
     render() {
-
-        //const {pseudo} = this.props.userData;
 
         const displayOptions= this.state.options.map((option,index) => {
             return (
@@ -152,10 +166,14 @@ class Quizz extends Component {
             )
         })
         
-        return !this.state.quizEnd ? (
+        return this.state.quizEnd ? (
             <QuizOver
                 ref={this.storedDataRef} 
-
+                levelNames= {this.state.levelNames}
+                score={this.state.score}
+                maxQuestions={this.state.maxQuestions}
+                quizLevel={this.state.quizLevel}
+                percent={this.state.percent}
             />
         )
         :
