@@ -9,23 +9,28 @@ import QuizOver from '../QuizOver'
 toast.configure();
 class Quizz extends Component {
 
-    state = {
-        levelNames: ["debutant","confirme","expert"],
-        quizLevel:0,
-        maxQuestions:10,
-        storedQuestions:[],
-        question:null,
-        options:[],
-        idQuestion:0,
-        btnDisabled:true,
-        userAnswer:null,
-        score:0,
-        showWelcomeMsg:false,
-        quizEnd:false,
-        percent:null
-    }
+    constructor(props){
+        super(props)
 
-    storedDataRef=React.createRef();
+        this.initialState = {
+            levelNames: ["debutant","confirme","expert"],
+            quizLevel:0,
+            maxQuestions:10,
+            storedQuestions:[],
+            question:null,
+            options:[],
+            idQuestion:0,
+            btnDisabled:true,
+            userAnswer:null,
+            score:0,
+            showWelcomeMsg:false,
+            quizEnd:false,
+            percent:null
+        }
+
+        this.state = this.initialState;
+        this.storedDataRef=React.createRef();
+    }
 
     //Charge les questions que l'on met au niveau du state
     loadQuestions = quizz => {
@@ -153,6 +158,12 @@ class Quizz extends Component {
         }
     }
 
+    loadLevelQuestions = param =>{
+        this.setState({...this.initialState,quizLevel:param})
+
+        this.loadQuestions(this.state.levelNames[param])
+    }
+
     render() {
 
         const displayOptions= this.state.options.map((option,index) => {
@@ -174,6 +185,7 @@ class Quizz extends Component {
                 maxQuestions={this.state.maxQuestions}
                 quizLevel={this.state.quizLevel}
                 percent={this.state.percent}
+                loadLevelQuestions={this.loadLevelQuestions}
             />
         )
         :
