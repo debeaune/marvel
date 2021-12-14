@@ -3,7 +3,7 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore'
 
 const config= {
-    apiKey: "AIzaSyDTBFpn7nN3alojEftTHHr0ASBFCPAcPRw",
+    apiKey:'3b25be834a749dcca785e0ffd0e26573',
     authDomain: "marvel-79115.firebaseapp.com",
     projectId: "marvel-79115",
     storageBucket: "marvel-79115.appspot.com",
