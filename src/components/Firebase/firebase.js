@@ -3,12 +3,12 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore'
 
 const config= {
-    apiKey:'3b25be834a749dcca785e0ffd0e26573',
-    authDomain: "marvel-79115.firebaseapp.com",
-    projectId: "marvel-79115",
-    storageBucket: "marvel-79115.appspot.com",
-    messagingSenderId: "715983999076",
-    appId: "1:715983999076:web:78f2c3925c0a8c20428f71"
+    apiKey:process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain:process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId:process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket:process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId:process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId:process.env.REACT_APP_FIREBASE_APP_ID
 }
 
 class Firebase {
